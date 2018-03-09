@@ -1,0 +1,27 @@
+In implemnetarea solutiei, am valorificat urmatoarele OOP design principles: 
+- singleton(ShapeFactory, ShapeOutliner, ShapeModifier, Bresenham si SafePixelSetter)
+- factory(ShapeFactory)
+- visitor(visitable=Shape; visitor=ShapeModifier)
+
+Interfete:
+1. Shape - interfata comuna tuturor formelor(visitables). Contine metoda accept(ShapeModifier) care ajuta in implementarea
+double-dispatch conform cu visitor design pattern
+2. ShapeModifier - interfata comuna claselor ce se ocupa cu desenarea formelor(visitors). Contine cate o metoda
+draw(Shape) pentru fiecare tip de forma, metode ce vor fi suprascrise in functie de implementare. Astfel, ShapeOutliner
+deseneaza doar conturul formei, iar ShapeFiller umple forma cu culoarea corespunzatoare.
+
+Clase:
+1. Forme: Circle, Diamond, Line, Polygon, Rectangle, Square, Triangle - contin cate un constructor, getteri, setteri si 
+metoda accept(ShapeModifier)
+2. ShapeFactory - clasa ce are rolul de a returna o forma de un anumit tip, pe baza argumentelor primite; astfel, clasa
+primeste un vector de stringuri ce reprezinta parametrii de pe o linie din fisierul de intrare si returneaza forma corecta,
+initializandu-i in acelasi timp si campurile;
+3. Bresenham - clasa ce contine metodele drawLine() si drawCircle() care folosesc algoritmii specificati in tema pentru
+desenarea liniei respectiv cercului
+4. SafePixelSetter - clasa ce primeste pozitia unui pixel si il seteaza pe culoarea primita doar daca se afla in interiorul
+canvasului
+5. ShapeOutliner - clasa ce deseneaza contururile fiecarei forme, apeland, dupa nevoie, metodele din Bresenhame: drawCircle
+(in cazul cercului) si drawLine (pentru toate celelalte)
+6. ShapeFiller - clasa ce umple figurile; pentru a umple un patrat sau dreptunghi, foloseste doua foruri, iar pentru a
+umple restul formelor, se bazeaza pe algoritmul de fill
+

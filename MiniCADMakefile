@@ -1,0 +1,4 @@
+build:
+	javac main/*.java Main.java
+clean:
+	rm -f main/*.class Main.class
